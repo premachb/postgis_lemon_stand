@@ -1,0 +1,17 @@
+version: "2"
+services:
+  web:
+    build: .
+    ports:
+    - "8080:8080"
+    links:
+    - postgis
+    volumes:
+    - .:/app
+  postgis:
+    restart: always
+    image: mdillon/postgis
+    ports:
+        - "5432:5432"
+    environment:
+        -  POSTGRES_PASSWORD=password
