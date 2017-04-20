@@ -1,8 +1,12 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const Stand = sequelize.define('stand', {
+const Stand = db.define('stand', {
     address: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    city: {
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -16,19 +20,25 @@ const Stand = sequelize.define('stand', {
     },
     postalCode: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true,
+        defaultValue: '111111'
+    },
+    phoneNumber: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: '9999999999'
     },
     location: {
         type: Sequelize.GEOMETRY('POINT'),
         allowNull: false
     },
     rating: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.INTEGER,
         allowNull: false,
         validate: {
-            isDecimal: true,
-            min: 1.0,
-            max: 5.0
+            isInt: true,
+            min: 1,
+            max: 5
         }
     }
 }, {
