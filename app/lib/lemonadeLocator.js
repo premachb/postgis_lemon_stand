@@ -26,7 +26,6 @@ const lemonadeStandLocator = {
     },
 
     getAllLocationsByDB : function(query) {
-       db.query("SELECT 
     },
 
     getTopFiveClosest : function(lat, lng) {

@@ -1,15 +1,5 @@
-var Sequelize = require('sequelize');
-var sequelize = new Sequelize('lemonade_stand_locator', 'postgres', 'password', {
-    host: 'localhost',
-    dialect: 'postgres',
-    logging: false,
-
-    pool: {
-        max: 5,
-        min: 0,
-        idle: 10000,
-    }
-});
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 const Stand = sequelize.define('stand', {
     address: {
@@ -51,4 +41,4 @@ Stand.sync().then(() => {
     console.log("Received error when syncing Stand table ", error);
 });;
 
-module.exports = sequelize;
+module.exports = Stand;
