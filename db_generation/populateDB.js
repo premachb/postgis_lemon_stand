@@ -25,11 +25,10 @@ const parser = csv.parse({}, function(err, data) {
         currentStandObject.phoneNumber = currentRow[5];
         currentStandObject.location = {
             type: 'Point',
-            coordinates: [parseFloat(currentRow[7]), parseFloat(currentRow[6])]
+            coordinates: [parseFloat(currentRow[7]), parseFloat(currentRow[6])],
+            crs: { type: 'name', properties: { name: 'EPSG:4326'} }
         };
         currentStandObject.rating = Math.floor(Math.random() * 5 + 1);
-        console.log("THIS IS OBJECT ", i);
-        console.log("THIS IS THE OBJECT ", currentStandObject);
         standObjects.push(currentStandObject);
     }
 

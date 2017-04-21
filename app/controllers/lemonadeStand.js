@@ -1,19 +1,27 @@
-/**
- * Created by brien on 2017-04-14.
- */
 const express = require('express');
+const winston = require('winston');
 const standRouter = express.Router();
 const lemonadeLocator = require('../lib/lemonadeLocator');
+const Stand = require('../lib/models/Stand');
 
-standRouter.get('/', function (req, res) {
-    let lemonadeStands = lemonadeLocator.getAllLocations();
-    return res.json(lemonadeStands);
+standRouter.get('/nearest', function (req, res) {
+    let latitude = req.query.lat;
+    let longitude = req.query.lng;
+
+    if(!latitude || !longitude) {
+        return res.send('Improper parameters lat and lng required');
+    }
+
+    lemonadeLocator.getTopFiveClosest(latitude, longitude, (err, results) => {
+        if(err) {
+            return res.json(err);
+        }
+        res.json(results);
+    });
 });
 
-standRouter.get('/:id', function (req, res) {
-    let standId = req.params.id;
-    let lemonadeStands = lemonadeLocator.getAllLocations({id: parseInt(standId)});
-    return res.json(lemonadeStands);
+standRouter.get('/regional', function (req, res) {
+    res.send('WIP');
 });
 
 module.exports = standRouter;

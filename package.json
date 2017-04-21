@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app/app.js",
+    "start": "nodemon -L app/app.js",
+    "syncDB": "node db_generation/populateDB.js",
     "test": ""
   },
   "keywords": [],
@@ -16,7 +17,8 @@
     "express": "4.15.2",
     "morgan": "1.8.1",
     "pg": "6.1.5",
-    "sequelize": "^3.30.4"
+    "sequelize": "^3.30.4",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "chai": "3.5.0",

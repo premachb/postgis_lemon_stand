@@ -1,5 +1,6 @@
 FROM node:latest
 
+RUN npm install --global nodemon
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 

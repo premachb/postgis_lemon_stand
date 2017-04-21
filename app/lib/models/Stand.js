@@ -46,9 +46,7 @@ const Stand = db.define('stand', {
 });
 
 Stand.sync().then(() => {
-    console.log("Synced Stand Table");
 }).catch((error) => {
-    console.log("Received error when syncing Stand table ", error);
 });;
 
 module.exports = Stand;
