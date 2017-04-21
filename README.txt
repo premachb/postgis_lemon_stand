@@ -6,11 +6,12 @@ represent my stands in my database.
 
 Endpoints:
 
-/stands/nearest -> Returns the closest stands to a lat/long point
-  Query Parameters:
-      lat: Latitude
-      lng: Longitude
-      count: (default 5) Amount of results
-/stands/region -> Returns the stands contained in a region
-  Still a WIP.
+/stands/nearest -> Returns the closest stands to a lat/long point  
+  Query Parameters:  
+   > lat: Latitude  
+   > lng: Longitude  
+   > count: (default 5) Amount of results
+   
+/stands/region -> Returns the stands contained in a region  
+  Still a WIP.  
   
