@@ -4,6 +4,16 @@ This project serves a Node.JS server that reads from a PostGRES Database running
 I took a CSV which contains the lat/long details of every Starbucks in the world and used these to
 represent my stands in my database. 
 
+How to Run Project
+----------
+
+Prerequistes: Have Docker installed on your machine. 
+1. Clone this project
+2. docker-compose run --rm start-dependencies
+3. docker-compose up -d
+
+Server should be running.
+
 Endpoints:
 
 /stands/nearest -> Returns the closest stands to a lat/long point  

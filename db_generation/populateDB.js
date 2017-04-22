@@ -2,11 +2,7 @@ var Stand = require('../app/lib/models/Stand');
 var csv = require('csv');
 var fs = require('fs');
 
-const parser = csv.parse({}, function(err, data) {
-    if(err) {
-        return console.log("DB MIGRATION FAILED ", err);
-    }
-
+function fillDB(data) {
     // We will use Sequelize bulk insert to make this one transaction
     // Premake the objects by looping over the csv
     // Then do a bulk insert.
@@ -32,11 +28,29 @@ const parser = csv.parse({}, function(err, data) {
         standObjects.push(currentStandObject);
     }
 
+
     Stand.bulkCreate(standObjects).then(() => {
         console.log("MIGRATION COMPLETE!");
     }).catch((error) => {
         console.log("MIGRATION FAILED ", error);
     })
+}
+
+const parser = csv.parse({}, function(err, data) {
+    if(err) {
+        return console.log("DB MIGRATION FAILED ", err);
+    }
+    
+    Stand.findById('1').then((stand) => {
+        if(stand) {
+            console.log("Stand table has content, skipping migration");
+        } else {
+            console.log("Stand table is empty, lets fill it up");
+            fillDB(data);
+        }
+    }).catch((error) => {
+        console.log("Error while migrating ", error);
+    });
 });
 
 fs.createReadStream(__dirname+'/starbucks_stores.csv').pipe(parser);

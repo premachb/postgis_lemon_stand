@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('lemonade_stand_locator', 'postgres', 'password', {
-    host: 'localhost',
+    host: 'postgis', // this is a reference to the container created by docker-compose. It handles forwarding the IP
     dialect: 'postgres',
     logging: false,
 

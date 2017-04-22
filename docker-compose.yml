@@ -4,6 +4,8 @@ services:
     build: .
     ports:
     - "8080:8080"
+    depends_on:
+    - postgis
     links:
     - postgis
     volumes:
@@ -16,3 +18,9 @@ services:
     environment:
         -  POSTGRES_PASSWORD=password
         -  POSTGRES_DB=lemonade_stand_locator
+  start_dependencies:
+      image: dadarek/wait-for-dependencies
+      depends_on:
+        - postgis
+      command: postgis:5432
+
