@@ -9,7 +9,7 @@ How to Run Project
 
 Prerequistes: Have Docker installed on your machine. 
 1. Clone this project
-2. docker-compose run --rm start-dependencies
+2. docker-compose run --rm start_dependencies
 3. docker-compose up -d
 
 Server should be running.
